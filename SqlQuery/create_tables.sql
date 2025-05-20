@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS quyen_han (
 );
 
 CREATE TABLE IF NOT EXISTS quyen_han_nguoi_dung (
+	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	ma_nguoi_dung INT NOT NULL,
 	ma_quyen_han INT NOT NULL,
 
