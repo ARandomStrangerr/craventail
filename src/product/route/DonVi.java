@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/muc-luc-ngan-sach")
-public class KhaiBaoTaiKhoan {
+@RequestMapping("/don-vi")
+public class DonVi {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void danhSach(){}
@@ -15,12 +15,6 @@ public class KhaiBaoTaiKhoan {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void them(){}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public void xem(@PathVariable String id){}
-
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public void chinhSua(@PathVariable String id) {}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void xoa(){}
 }

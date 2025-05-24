@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/muc-luc-ngan-sach")
-public class KhaiBaoTaiKhoan {
+@RequestMapping("/don-vi")
+public class TaiKhoanDung {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void danhSach(){}
