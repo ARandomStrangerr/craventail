@@ -1,6 +1,9 @@
 package product.route;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +16,7 @@ public class DonVi {
 	public void danhSach(){}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public void them(){}
+	public void them(@RequestBody Map<String, String> body){}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public void chinhSua(@PathVariable String id) {}

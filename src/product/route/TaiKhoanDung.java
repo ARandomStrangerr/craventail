@@ -1,19 +1,22 @@
 package product.route;
 
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/don-vi")
+@RequestMapping("/tai-khoan-dung")
 public class TaiKhoanDung {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void danhSach(){}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public void them(){}
+	public void them(@RequestBody Map<String, String> body){}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public void xem(@PathVariable String id){}
