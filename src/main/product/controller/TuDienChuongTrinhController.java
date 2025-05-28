@@ -1,4 +1,4 @@
-package product.route;
+package main.product.controller;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tu-dien-chuong-trinh")
-public class TuDienChuongTrinh {
+public class TuDienChuongTrinhController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void danhSach(){}

@@ -62,3 +62,20 @@ CREATE TABLE IF NOT EXISTS chi_tiet_chung_tu (
 	FOREIGN KEY ma_chung_tu REFERENCES chung_tu(ma),
 	FOREIGN KEY ma_khoan_thu REFERENCES khoan_thu(ma)
 ); -- a.k.a bút toán
+
+CREATE TABLE IF NOT EXISTS don_vi (
+    id SERIAL PRIMARY KEY,
+    don_vi_chu_quan VARCHAR(256),
+    ma_don_vi VARCHAR(20),
+    ten_don_vi VARCHAR(256) NOT NULL,
+    ten_doi_ngoai VARCHAR(256),
+    dia_chi VARCHAR(256) NOT NULL,
+    ma_chuong VARCHAR(6) NOT NULL,
+    ma_so_don_vi VARCHAR(20) NOT NULL,
+    ma_so_thue VARCHAR(10) NOT NULL,
+    cuc_thue VARCHAR(20),
+    ma_chuong_thu_thue VARCHAR(6),
+    ma_so_don_vi_thu_thue VARCHAR(10),
+    kho_bac_chuyen_thue VARCHAR(20)
+);
+

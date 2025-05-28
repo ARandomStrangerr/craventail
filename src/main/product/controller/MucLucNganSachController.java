@@ -1,4 +1,4 @@
-package product.route;
+package main.product.controller;
 
 import java.util.Map;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/don-vi")
-public class DonVi {
+@RequestMapping("/muc-luc-ngan-sach")
+public class MucLucNganSachController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public void danhSach(){}
@@ -18,6 +18,12 @@ public class DonVi {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public void them(@RequestBody Map<String, String> body){}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public void xem(@PathVariable String id){}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public void chinhSua(@PathVariable String id) {}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void xoa(){}
 }
