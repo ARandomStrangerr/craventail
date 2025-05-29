@@ -10,7 +10,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApiResponse<T> {
-    private int code;
+    private int status;
     private T data;
     private String message;
     private Map<String, String> errors;

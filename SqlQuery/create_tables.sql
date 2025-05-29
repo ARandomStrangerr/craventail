@@ -79,3 +79,9 @@ CREATE TABLE IF NOT EXISTS don_vi (
     kho_bac_chuyen_thue VARCHAR(20)
 );
 
+CREATE TABLE IF NOT EXISTS tu_dien_cong_trinh (
+    id SERIAL PRIMARY KEY,
+    ma_cong_trinh VARCHAR(20) NOT NULL,
+    ten_cong_trinh VARCHAR(256) NOT NULL,
+    ma_chuong VARCHAR(6) NOT NULL
+);
