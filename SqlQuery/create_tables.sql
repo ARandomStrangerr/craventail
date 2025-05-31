@@ -85,3 +85,11 @@ CREATE TABLE IF NOT EXISTS tu_dien_cong_trinh (
     ten_cong_trinh VARCHAR(256) NOT NULL,
     ma_chuong VARCHAR(6) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS muc_luc_ngan_sach (
+   id SERIAL PRIMARY KEY,
+   nhom VARCHAR(4) NOT NULL,
+   tieu_nhom VARCHAR(5) NOT NULL,
+   ten VARCHAR(12) NOT NULL,
+   noi_dung VARCHAR(256) NOT NULL
+);
