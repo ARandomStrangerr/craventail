@@ -93,3 +93,14 @@ CREATE TABLE IF NOT EXISTS muc_luc_ngan_sach (
    ten VARCHAR(12) NOT NULL,
    noi_dung VARCHAR(256) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS tai_khoan_dung (
+    id SERIAL PRIMARY KEY,
+    ten_tai_khoan VARCHAR(55) NOT NULL,
+    so_hieu_tai_khoan VARCHAR(10) NOT NULL,
+    loai_rut_so_du CHAR(1) NOT NULL,
+    ten_chu_quan VARCHAR(60),
+    tai_khoan_ngan_hang_kho_bac VARCHAR(15),
+    tam_ung VARCHAR(60),
+    ten_ngan_hang_kho_bac VARCHAR(256)
+);
