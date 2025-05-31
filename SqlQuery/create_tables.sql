@@ -104,3 +104,11 @@ CREATE TABLE IF NOT EXISTS tai_khoan_dung (
     tam_ung VARCHAR(60),
     ten_ngan_hang_kho_bac VARCHAR(256)
 );
+
+CREATE TABLE IF NOT EXISTS tu_dien_chuong_trinh (
+    id SERIAL PRIMARY KEY,
+    ma_chuong_trinh VARCHAR(20) NOT NULL,
+    ten_chuong_trinh VARCHAR(256) NOT NULL,
+    ma_chuong VARCHAR(6) NOT NULL,
+    nguon_von CHAR(2) NOT NULL
+);

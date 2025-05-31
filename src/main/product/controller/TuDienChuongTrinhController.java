@@ -1,29 +1,59 @@
 package main.product.controller;
 
-import java.util.Map;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import main.product.dto.request.TuDienChuongTrinhRequest;
+import main.product.dto.response.ApiResponse;
+import main.product.entity.TuDienChuongTrinh;
+import main.product.service.TuDienChuongTrinhService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/tu-dien-chuong-trinh")
 public class TuDienChuongTrinhController {
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public void danhSach(){}
+	@Autowired
+	private TuDienChuongTrinhService tuDienChuongTrinhService;
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public void them(@RequestBody Map<String, String> body){}
+	@GetMapping
+	public ResponseEntity<?> danhSach(
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "id") String sortBy,
+			@RequestParam(defaultValue = "desc") String sortDir) {
+		
+		Sort.Direction direction = Sort.Direction.fromString(sortDir);
+		PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(direction, sortBy));
+		Page<TuDienChuongTrinh> result = tuDienChuongTrinhService.danhSach(pageRequest);
+		
+		return ResponseEntity.ok(ApiResponse.success(result, "Lấy danh sách thành công"));
+	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public void xem(@PathVariable String id){}
+	@PostMapping
+	public ResponseEntity<?> them(@RequestBody @Valid TuDienChuongTrinhRequest request) {
+		TuDienChuongTrinh tuDienChuongTrinh = tuDienChuongTrinhService.them(request);
+		return ResponseEntity.ok(ApiResponse.success(tuDienChuongTrinh, "Tạo mới thành công"));
+	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public void chinhSua(@PathVariable String id) {}
+	@GetMapping("/{id}")
+	public ResponseEntity<?> xem(@PathVariable Long id) {
+		TuDienChuongTrinh tuDienChuongTrinh = tuDienChuongTrinhService.xem(id);
+		return ResponseEntity.ok(ApiResponse.success(tuDienChuongTrinh, "Lấy thông tin thành công"));
+	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void xoa(){}
+	@PutMapping("/{id}")
+	public ResponseEntity<?> chinhSua(@PathVariable Long id, @RequestBody @Valid TuDienChuongTrinhRequest request) {
+		TuDienChuongTrinh tuDienChuongTrinh = tuDienChuongTrinhService.chinhSua(id, request);
+		return ResponseEntity.ok(ApiResponse.success(tuDienChuongTrinh, "Cập nhật thành công"));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> xoa(@PathVariable Long id) {
+		tuDienChuongTrinhService.xoa(id);
+		return ResponseEntity.ok(ApiResponse.success(null, "Xóa thành công"));
+	}
 }
