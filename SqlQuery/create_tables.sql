@@ -114,6 +114,17 @@ CREATE TABLE IF NOT EXISTS tu_dien_chuong_trinh (
     ma_chuong_trinh VARCHAR(20) NOT NULL,
     ten_chuong_trinh VARCHAR(256) NOT NULL,
     ma_chuong VARCHAR(6) NOT NULL,
-    nguon_von CHAR(2) NOT NULL,
+    nguon_von VARCHAR(2) NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS doi_tuong_kinh_te (
+    id BIGSERIAL PRIMARY KEY,
+    ma_doi_tuong VARCHAR(15) NOT NULL,
+    doi_tuong VARCHAR(256) NOT NULL,
+    dia_chi VARCHAR(256),
+    ma_don_vi VARCHAR(20),
+    ma_so_thue VARCHAR(20),
+    so_can_cuoc_cong_dan VARCHAR(20),
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
