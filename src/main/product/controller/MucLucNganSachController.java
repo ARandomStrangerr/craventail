@@ -7,8 +7,9 @@ import main.product.entity.MucLucNganSach;
 import main.product.service.MucLucNganSachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,15 +22,10 @@ public class MucLucNganSachController {
 
 	@GetMapping
 	public ResponseEntity<?> danhSach(
-			@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "10") int size,
-			@RequestParam(defaultValue = "id") String sortBy,
-			@RequestParam(defaultValue = "desc") String sortDir) {
-		
-		Sort.Direction direction = Sort.Direction.fromString(sortDir);
-		PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(direction, sortBy));
-		Page<MucLucNganSach> result = mucLucNganSachService.danhSach(pageRequest);
-		
+			@ModelAttribute MucLucNganSachRequest request,
+			@PageableDefault(size = 10, page = 0, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+	) {
+		Page<MucLucNganSach> result = mucLucNganSachService.search(request, pageable);
 		return ResponseEntity.ok(ApiResponse.success(result, "Lấy danh sách thành công"));
 	}
 

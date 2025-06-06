@@ -2,15 +2,14 @@ package main.product.controller;
 
 import jakarta.validation.Valid;
 import main.product.dto.request.DonViRequest;
-import main.product.dto.request.DonViRequest;
 import main.product.dto.response.ApiResponse;
-import main.product.entity.DonVi;
 import main.product.entity.DonVi;
 import main.product.service.DonViService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,15 +22,10 @@ public class DonViController {
 
     @GetMapping
     public ResponseEntity<?> danhSach(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "desc") String sortDir) {
-
-        Sort.Direction direction = Sort.Direction.fromString(sortDir);
-        PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(direction, sortBy));
-        Page<DonVi> result = donViService.danhSach(pageRequest);
-
+            @ModelAttribute DonViRequest request,
+            @PageableDefault(size = 10, page = 0, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        Page<DonVi> result = donViService.search(request, pageable);
         return ResponseEntity.ok(ApiResponse.success(result, "Lấy danh sách thành công"));
     }
 
