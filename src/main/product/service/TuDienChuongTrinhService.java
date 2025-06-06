@@ -1,6 +1,7 @@
 package main.product.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import main.product.dto.request.TuDienChuongTrinhRequest;
 import main.product.entity.TuDienChuongTrinh;
 import main.product.mapper.ITuDienChuongTrinhMapper;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class TuDienChuongTrinhService {
     @Autowired
     private TuDienChuongTrinhRepository tuDienChuongTrinhRepository;
@@ -28,7 +30,7 @@ public class TuDienChuongTrinhService {
     }
 
     public TuDienChuongTrinh xem(Long id) {
-        return tuDienChuongTrinhRepository.findById(id)
+        return tuDienChuongTrinhRepository.findByIdActive(id)
                 .orElseThrow(() -> new EntityNotFoundException("Không tìm thấy từ điển chương trình"));
     }
 
@@ -42,6 +44,6 @@ public class TuDienChuongTrinhService {
         if (!tuDienChuongTrinhRepository.existsById(id)) {
             throw new EntityNotFoundException("Không tìm thấy từ điển chương trình");
         }
-        tuDienChuongTrinhRepository.deleteById(id);
+        tuDienChuongTrinhRepository.softDelete(id);
     }
 } 

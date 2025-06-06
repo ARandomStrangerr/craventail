@@ -1,12 +1,13 @@
 package main.product.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import main.product.entity.DonVi;
-
-import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DonViRepository extends JpaRepository<DonVi, Integer> {
-    Optional<DonVi> findFirstByOrderByIdAsc();
+public interface DonViRepository extends BaseRepository<DonVi, Long> {
+    @Query("SELECT e FROM DonVi e WHERE e.deleted = false")
+    Page<DonVi> findAll(Pageable pageable);
 }

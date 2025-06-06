@@ -29,7 +29,6 @@ public class DonViRequest {
     @Size(max = 256, message = "Địa chỉ tối đa 256 ký tự")
     String dia_chi;
 
-    @NotBlank(message = "Mã chương không được để trống")
     @Size(max = 6, message = "Mã chương tối đa 6 ký tự")
     String ma_chuong;
 
@@ -41,7 +40,7 @@ public class DonViRequest {
     @Size(max = 10, message = "Mã số thuế tối đa 10 ký tự")
     String ma_so_thue;
 
-    @Size(max = 20, message = "Cục thuế tối đa 20 ký tự")
+    @Size(max = 256, message = "Cục thuế tối đa 256 ký tự")
     String cuc_thue;
 
     @Size(max = 6, message = "Mã chương đơn vị thu thuế tối đa 6 ký tự")

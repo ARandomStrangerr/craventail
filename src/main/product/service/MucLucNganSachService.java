@@ -1,6 +1,7 @@
 package main.product.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import main.product.dto.request.MucLucNganSachRequest;
 import main.product.entity.MucLucNganSach;
 import main.product.mapper.IMucLucNganSachMapper;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class MucLucNganSachService {
     @Autowired
     private MucLucNganSachRepository mucLucNganSachRepository;
@@ -28,7 +30,7 @@ public class MucLucNganSachService {
     }
 
     public MucLucNganSach xem(Long id) {
-        return mucLucNganSachRepository.findById(id)
+        return mucLucNganSachRepository.findByIdActive(id)
                 .orElseThrow(() -> new EntityNotFoundException("Không tìm thấy mục lục ngân sách"));
     }
 
@@ -42,6 +44,6 @@ public class MucLucNganSachService {
         if (!mucLucNganSachRepository.existsById(id)) {
             throw new EntityNotFoundException("Không tìm thấy mục lục ngân sách");
         }
-        mucLucNganSachRepository.deleteById(id);
+        mucLucNganSachRepository.softDelete(id);
     }
 } 

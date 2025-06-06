@@ -1,6 +1,7 @@
 package main.product.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import main.product.dto.request.TaiKhoanDungRequest;
 import main.product.entity.TaiKhoanDung;
 import main.product.mapper.ITaiKhoanDungMapper;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class TaiKhoanDungService {
     @Autowired
     private TaiKhoanDungRepository taiKhoanDungRepository;
@@ -28,7 +30,7 @@ public class TaiKhoanDungService {
     }
 
     public TaiKhoanDung xem(Long id) {
-        return taiKhoanDungRepository.findById(id)
+        return taiKhoanDungRepository.findByIdActive(id)
                 .orElseThrow(() -> new EntityNotFoundException("Không tìm thấy tài khoản dùng"));
     }
 
@@ -42,6 +44,6 @@ public class TaiKhoanDungService {
         if (!taiKhoanDungRepository.existsById(id)) {
             throw new EntityNotFoundException("Không tìm thấy tài khoản dùng");
         }
-        taiKhoanDungRepository.deleteById(id);
+        taiKhoanDungRepository.softDelete(id);
     }
 } 

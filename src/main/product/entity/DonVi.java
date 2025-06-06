@@ -1,18 +1,18 @@
 package main.product.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+@Setter
+@Getter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "don_vi")
-@Data
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class DonVi {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+public class DonVi extends BaseEntity {
     String don_vi_chu_quan;
     String ma_don_vi;
     String ten_don_vi;

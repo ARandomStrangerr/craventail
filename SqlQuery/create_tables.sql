@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS chi_tiet_chung_tu (
 	no NUMERIC(18, 2) DEFAULT 0,
 	co NUMERIC(18, 2) DEFAULT 0,
 	mieu_ta TEXT,
-	
+
 	PRIMARY KEY (dong, ma_chung_tu),
 
 	FOREIGN KEY ma_chung_tu REFERENCES chung_tu(ma),
@@ -73,25 +73,28 @@ CREATE TABLE IF NOT EXISTS don_vi (
     ma_chuong VARCHAR(6) NOT NULL,
     ma_so_don_vi VARCHAR(20) NOT NULL,
     ma_so_thue VARCHAR(10) NOT NULL,
-    cuc_thue VARCHAR(20),
+    cuc_thue VARCHAR(256),
     ma_chuong_thu_thue VARCHAR(6),
     ma_so_don_vi_thu_thue VARCHAR(10),
-    kho_bac_chuyen_thue VARCHAR(20)
+    kho_bac_chuyen_thue VARCHAR(20),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS tu_dien_cong_trinh (
     id SERIAL PRIMARY KEY,
     ma_cong_trinh VARCHAR(20) NOT NULL,
     ten_cong_trinh VARCHAR(256) NOT NULL,
-    ma_chuong VARCHAR(6) NOT NULL
+    ma_chuong VARCHAR(6) NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS muc_luc_ngan_sach (
    id SERIAL PRIMARY KEY,
    nhom VARCHAR(4) NOT NULL,
-   tieu_nhom VARCHAR(5) NOT NULL,
+   tieu_nhom VARCHAR(5) NULL,
    ten VARCHAR(12) NOT NULL,
-   noi_dung VARCHAR(256) NOT NULL
+   noi_dung VARCHAR(256) NOT NULL,
+   deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS tai_khoan_dung (
@@ -102,7 +105,8 @@ CREATE TABLE IF NOT EXISTS tai_khoan_dung (
     ten_chu_quan VARCHAR(60),
     tai_khoan_ngan_hang_kho_bac VARCHAR(15),
     tam_ung VARCHAR(60),
-    ten_ngan_hang_kho_bac VARCHAR(256)
+    ten_ngan_hang_kho_bac VARCHAR(256),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS tu_dien_chuong_trinh (
@@ -110,5 +114,6 @@ CREATE TABLE IF NOT EXISTS tu_dien_chuong_trinh (
     ma_chuong_trinh VARCHAR(20) NOT NULL,
     ten_chuong_trinh VARCHAR(256) NOT NULL,
     ma_chuong VARCHAR(6) NOT NULL,
-    nguon_von CHAR(2) NOT NULL
+    nguon_von CHAR(2) NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
