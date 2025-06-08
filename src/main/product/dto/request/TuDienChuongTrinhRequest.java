@@ -13,17 +13,17 @@ import lombok.experimental.FieldDefaults;
 public class TuDienChuongTrinhRequest {
     @NotBlank(message = "Mã chương trình không được để trống")
     @Size(max = 20, message = "Mã chương trình tối đa 20 ký tự")
-    String ma_chuong_trinh;
+    String maChuongTrinh;
 
     @NotBlank(message = "Tên chương trình không được để trống")
     @Size(max = 256, message = "Tên chương trình tối đa 256 ký tự")
-    String ten_chuong_trinh;
+    String tenChuongTrinh;
 
     @NotBlank(message = "Mã chương không được để trống")
     @Size(max = 6, message = "Mã chương tối đa 6 ký tự")
-    String ma_chuong;
+    String maChuong;
 
     @NotBlank(message = "Nguồn vốn không được để trống")
     @Size(min = 2, max = 2, message = "Nguồn vốn phải có đúng 2 ký tự")
-    String nguon_von;
+    String nguonVon;
 } 

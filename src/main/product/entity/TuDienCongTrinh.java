@@ -1,5 +1,6 @@
 package main.product.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -13,7 +14,12 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Table(name = "tu_dien_cong_trinh")
 public class TuDienCongTrinh extends BaseEntity {
-    private String ma_cong_trinh;
-    private String ten_cong_trinh;
-    private String ma_chuong;
+    @Column(name = "ma_cong_trinh")
+    private String maCongTrinh;
+
+    @Column(name = "ten_cong_trinh")
+    private String tenCongTrinh;
+
+    @Column(name = "ma_chuong")
+    private String maChuong;
 } 

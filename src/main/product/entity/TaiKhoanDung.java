@@ -12,11 +12,24 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Table(name = "tai_khoan_dung")
 public class TaiKhoanDung extends BaseEntity {
-    String ten_tai_khoan;
-    String so_hieu_tai_khoan;
-    String loai_rut_so_du;
-    String ten_chu_quan;
-    String tai_khoan_ngan_hang_kho_bac;
-    String tam_ung;
-    String ten_ngan_hang_kho_bac;
+    @Column(name = "ten_tai_khoan")
+    String tenTaiKhoan;
+
+    @Column(name = "so_hieu_tai_khoan")
+    String soHieuTaiKhoan;
+
+    @Column(name = "loai_rut_so_du")
+    String loaiRutSoDu;
+
+    @Column(name = "ten_chu_quan")
+    String tenChuQuan;
+
+    @Column(name = "tai_khoan_ngan_hang_kho_bac")
+    String taiKhoanNganHangKhoBac;
+
+    @Column(name = "tam_ung")
+    String tamUng;
+
+    @Column(name = "ten_ngan_hang_kho_bac")
+    String tenNganHangKhoBac;
 } 
