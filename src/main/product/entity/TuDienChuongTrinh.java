@@ -12,8 +12,15 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Table(name = "tu_dien_chuong_trinh")
 public class TuDienChuongTrinh extends BaseEntity {
-    private String ma_chuong_trinh;
-    private String ten_chuong_trinh;
-    private String ma_chuong;
-    private String nguon_von;
+    @Column(name = "ma_chuong_trinh")
+    private String maChuongTrinh;
+
+    @Column(name = "ten_chuong_trinh")
+    private String tenChuongTrinh;
+
+    @Column(name = "ma_chuong")
+    private String maChuong;
+
+    @Column(name = "nguon_von")
+    private String nguonVon;
 } 

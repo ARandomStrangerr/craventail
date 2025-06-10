@@ -13,13 +13,13 @@ import lombok.experimental.FieldDefaults;
 public class TuDienCongTrinhRequest {
     @NotBlank(message = "Mã công trình không được để trống")
     @Size(max = 20, message = "Mã công trình tối đa 20 ký tự")
-    String ma_cong_trinh;
+    String maCongTrinh;
 
     @NotBlank(message = "Tên công trình không được để trống")
     @Size(max = 256, message = "Tên công trình tối đa 256 ký tự")
-    String ten_cong_trinh;
+    String tenCongTrinh;
 
     @NotBlank(message = "Mã chương không được để trống")
     @Size(max = 6, message = "Mã chương tối đa 6 ký tự")
-    String ma_chuong;
+    String maChuong;
 } 

@@ -16,7 +16,7 @@ public class MucLucNganSachRequest {
     String nhom;
 
     @Size(max = 5, message = "Tiểu nhóm tối đa 5 ký tự")
-    String tieu_nhom;
+    String tieuNhom;
 
     @NotBlank(message = "Tên không được để trống")
     @Size(max = 12, message = "Tên tối đa 12 ký tự")
@@ -24,5 +24,5 @@ public class MucLucNganSachRequest {
 
     @NotBlank(message = "Nội dung không được để trống")
     @Size(max = 256, message = "Nội dung tối đa 256 ký tự")
-    String noi_dung;
+    String noiDung;
 } 
