@@ -128,3 +128,13 @@ CREATE TABLE IF NOT EXISTS doi_tuong_kinh_te (
     so_can_cuoc_cong_dan VARCHAR(20),
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE IF NOT EXISTS danh_muc_don_vi (
+    id SERIAL PRIMARY KEY,
+    ma_don_vi VARCHAR(20) NOT NULL,
+    ten_don_vi VARCHAR(256) NOT NULL,
+    so_tai_khoan_kho_bac VARCHAR(15),
+    ten_ngan_hang_kho_bac VARCHAR(256),
+    ma_so_su_dung_ngan_sach VARCHAR(10),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+);
