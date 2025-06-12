@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import main.product.repository.DonViRepository;
+import main.product.validation.UniqueField;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -34,6 +36,7 @@ public class DonViRequest {
 
     @NotBlank(message = "Mã số đơn vị không được để trống")
     @Size(max = 20, message = "Mã số đơn vị tối đa 20 ký tự")
+    @UniqueField(fieldName = "maSoDonVi", repository = DonViRepository.class, message = "Mã đơn vị đã tồn tại")
     String maSoDonVi;
 
     @NotBlank(message = "Mã số thuế không được để trống")

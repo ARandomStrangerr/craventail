@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import main.product.repository.TuDienChuongTrinhRepository;
+import main.product.validation.UniqueField;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -13,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 public class TuDienChuongTrinhRequest {
     @NotBlank(message = "Mã chương trình không được để trống")
     @Size(max = 20, message = "Mã chương trình tối đa 20 ký tự")
+    @UniqueField(fieldName = "maChuongTrinh", repository = TuDienChuongTrinhRepository.class, message = "Mã chương trình đã tồn tại")
     String maChuongTrinh;
 
     @NotBlank(message = "Tên chương trình không được để trống")

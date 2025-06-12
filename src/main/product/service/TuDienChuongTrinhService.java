@@ -6,16 +6,26 @@ import main.product.entity.TuDienChuongTrinh;
 import main.product.mapper.BaseMapper;
 import main.product.mapper.ITuDienChuongTrinhMapper;
 import main.product.repository.BaseRepository;
+import main.product.repository.SoDuChiTietRepository;
+import main.product.repository.SoDuRepository;
 import main.product.repository.TuDienChuongTrinhRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 @Transactional
 public class TuDienChuongTrinhService extends BaseService<TuDienChuongTrinh, TuDienChuongTrinhRequest> {
     @Autowired
     private TuDienChuongTrinhRepository tuDienChuongTrinhRepository;
+
+    @Autowired
+    private SoDuRepository soDuRepository;
+
+    @Autowired
+    private SoDuChiTietRepository soDuChiTietRepository;
 
     @Autowired
     private ITuDienChuongTrinhMapper tuDienChuongTrinhMapper;
@@ -43,5 +53,15 @@ public class TuDienChuongTrinhService extends BaseService<TuDienChuongTrinh, TuD
         spec = and(spec, createLikeSpecification("maChuong", request.getMaChuong()));
 
         return spec;
+    }
+
+    @Override
+    protected TuDienChuongTrinh beforeUpdate(TuDienChuongTrinh entity, TuDienChuongTrinhRequest request) {
+        if (!Objects.equals(entity.getMaChuongTrinh(), request.getMaChuongTrinh())) {
+            soDuRepository.updateMaChuongTrinh(entity.getMaChuongTrinh(), request.getMaChuongTrinh());
+            soDuChiTietRepository.updateMaChuongTrinh(entity.getMaChuongTrinh(), request.getMaChuongTrinh());
+        }
+        entity.setMaChuongTrinh(request.getMaChuongTrinh());
+        return entity;
     }
 }

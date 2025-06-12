@@ -7,15 +7,22 @@ import main.product.mapper.BaseMapper;
 import main.product.mapper.IDoiTuongKinhTeMapper;
 import main.product.repository.BaseRepository;
 import main.product.repository.DoiTuongKinhTeRepository;
+import main.product.repository.SoDuChiTietRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 @Transactional
 public class DoiTuongKinhTeService extends BaseService<DoiTuongKinhTe, DoiTuongKinhTeRequest> {
     @Autowired
     private DoiTuongKinhTeRepository doiTuongKinhTeRepository;
+
+    @Autowired
+    private SoDuChiTietRepository soDuChiTietRepository;
+
     @Autowired
     private IDoiTuongKinhTeMapper iDoiTuongKinhTeMapper;
 
@@ -46,5 +53,19 @@ public class DoiTuongKinhTeService extends BaseService<DoiTuongKinhTe, DoiTuongK
         spec = and(spec, createLikeSpecification("soCanCuocCongDan", request.getSoCanCuocCongDan()));
 
         return spec;
+    }
+
+    @Override
+    protected DoiTuongKinhTe beforeUpdate(DoiTuongKinhTe entity, DoiTuongKinhTeRequest request) {
+        if (!Objects.equals(entity.getMaDoiTuong(), request.getMaDoiTuong())
+                || !Objects.equals(entity.getDoiTuong(), request.getDoiTuong())
+                || !Objects.equals(entity.getDiaChi(), request.getDiaChi())
+        ) {
+            soDuChiTietRepository.updateDoiTuong(entity.getMaDoiTuong(), entity.getDoiTuong(), entity.getDiaChi(), request.getMaDoiTuong(), request.getDoiTuong(), request.getDiaChi());
+        }
+        entity.setMaDoiTuong(request.getMaDoiTuong());
+        entity.setDoiTuong(request.getDoiTuong());
+        entity.setDiaChi(request.getDiaChi());
+        return entity;
     }
 } 

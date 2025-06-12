@@ -11,7 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.query.Param;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @NoRepositoryBean
@@ -35,8 +37,8 @@ public interface BaseRepository<T, ID> extends JpaRepository<T, ID>, JpaSpecific
         Specification<T> spec = (root, query, cb) -> {
             query.distinct(true);
             return cb.and(
-                cb.equal(root.get(fieldName), value),
-                cb.equal(root.get("deleted"), false)
+                    cb.equal(root.get(fieldName), value),
+                    cb.isFalse(root.get("deleted"))
             );
         };
         return count(spec) > 0;
@@ -46,11 +48,45 @@ public interface BaseRepository<T, ID> extends JpaRepository<T, ID>, JpaSpecific
         Specification<T> spec = (root, query, cb) -> {
             query.distinct(true);
             return cb.and(
-                cb.equal(root.get(fieldName), value),
-                cb.notEqual(root.get("id"), id),
-                cb.equal(root.get("deleted"), false)
+                    cb.equal(root.get(fieldName), value),
+                    cb.notEqual(root.get("id"), id),
+                    cb.isFalse(root.get("deleted"))
             );
         };
         return count(spec) > 0;
     }
+
+    default Optional<T> findFirstByField(String fieldName, Object value) {
+        Specification<T> spec = (root, query, cb) -> {
+            query.distinct(true);
+            return cb.and(
+                    cb.equal(root.get(fieldName), value),
+                    cb.isFalse(root.get("deleted"))
+            );
+        };
+
+        return findAll(spec).stream().findFirst();
+    }
+
+    default Optional<T> findFirstByFields(Map<String, String> fieldConditions) {
+        Specification<T> spec = Specification.where(null);
+
+        for (Map.Entry<String, String> entry : fieldConditions.entrySet()) {
+            String fieldName = entry.getKey();
+            String fieldValue = entry.getValue();
+
+            spec = spec.and((root, query, cb) -> {
+                if (fieldValue == null) {
+                    return cb.isNull(root.get(fieldName));
+                } else {
+                    return cb.equal(root.get(fieldName), fieldValue);
+                }
+            });
+        }
+
+        spec = spec.and((root, query, cb) -> cb.isFalse(root.get("deleted")));
+
+        return findAll(spec).stream().findFirst();
+    }
+
 }

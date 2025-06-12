@@ -7,15 +7,25 @@ import main.product.mapper.BaseMapper;
 import main.product.mapper.IDanhMucDonViMapper;
 import main.product.repository.BaseRepository;
 import main.product.repository.DanhMucDonViRepository;
+import main.product.repository.SoDuChiTietRepository;
+import main.product.repository.SoDuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 @Transactional
 public class DanhMucDonViService extends BaseService<DanhMucDonVi, DanhMucDonViRequest> {
     @Autowired
     private DanhMucDonViRepository danhMucDonViRepository;
+
+    @Autowired
+    private SoDuRepository soDuRepository;
+
+    @Autowired
+    private SoDuChiTietRepository soDuChiTietRepository;
 
     @Autowired
     private IDanhMucDonViMapper danhMucDonViMapper;
@@ -46,5 +56,15 @@ public class DanhMucDonViService extends BaseService<DanhMucDonVi, DanhMucDonViR
         spec = and(spec, createLikeSpecification("maSoSuDungNganSach", request.getMaSoSuDungNganSach()));
 
         return spec;
+    }
+
+    @Override
+    protected DanhMucDonVi beforeUpdate(DanhMucDonVi entity, DanhMucDonViRequest request) {
+        if (!Objects.equals(entity.getMaDonVi(), request.getMaDonVi())) {
+            soDuRepository.updateMaDonVi(entity.getMaDonVi(), request.getMaDonVi());
+            soDuChiTietRepository.updateMaDonVi(entity.getMaDonVi(), request.getMaDonVi());
+        }
+        entity.setMaDonVi(request.getMaDonVi());
+        return entity;
     }
 } 

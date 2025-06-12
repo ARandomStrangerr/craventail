@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS don_vi (
     ten_don_vi VARCHAR(256) NOT NULL,
     ten_doi_ngoai VARCHAR(256),
     dia_chi VARCHAR(256) NOT NULL,
-    ma_chuong VARCHAR(6) NOT NULL,
+    ma_chuong VARCHAR(6),
     ma_so_don_vi VARCHAR(20) NOT NULL,
     ma_so_thue VARCHAR(10) NOT NULL,
     cuc_thue VARCHAR(256),
@@ -138,3 +138,68 @@ CREATE TABLE IF NOT EXISTS danh_muc_don_vi (
     ma_so_su_dung_ngan_sach VARCHAR(10),
     deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE IF NOT EXISTS so_du (
+    id SERIAL PRIMARY KEY,
+    ngay_thang DATE NOT NULL,
+    so_hieu_tai_khoan VARCHAR(8) NOT NULL,
+    ma_chuong VARCHAR(5),
+    du_no INTEGER,
+    du_no_ngoai_te DOUBLE PRECISION,
+    du_co INTEGER,
+    du_co_ngoai_te DOUBLE PRECISION,
+    loai_tien VARCHAR(5),
+    muc_tieu_muc VARCHAR(12),
+    nhom_muc VARCHAR(4),
+    ma_chuong_trinh VARCHAR(20),
+    ma_cong_trinh VARCHAR(15),
+    ma_nguon VARCHAR(6),
+    ma_don_vi VARCHAR(10),
+    dong_dau VARCHAR(10),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+
+CREATE TABLE IF NOT EXISTS so_du (
+    id SERIAL PRIMARY KEY,
+    ngay_thang DATE NOT NULL,
+    so_hieu_tai_khoan VARCHAR(8) NOT NULL,
+    ma_chuong VARCHAR(5),
+    du_no INTEGER,
+    du_no_ngoai_te DOUBLE PRECISION,
+    du_co INTEGER,
+    du_co_ngoai_te DOUBLE PRECISION,
+    loai_tien VARCHAR(5),
+    muc_tieu_muc VARCHAR(12),
+    nhom_muc VARCHAR(4),
+    ma_chuong_trinh VARCHAR(20),
+    ma_cong_trinh VARCHAR(15),
+    ma_nguon VARCHAR(6),
+    ma_don_vi VARCHAR(10),
+    dong_dau VARCHAR(10),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+    );
+
+
+CREATE TABLE IF NOT EXISTS so_du_chi_tiet (
+    id SERIAL PRIMARY KEY,
+    ngay_thang DATE NOT NULL,
+    ma_doi_tuong VARCHAR(10),
+    doi_tuong VARCHAR(255),
+    dia_chi VARCHAR(256),
+    so_hieu_tai_khoan VARCHAR(8) NOT NULL,
+    ma_chuong VARCHAR(5),
+    du_no INTEGER,
+    du_no_ngoai_te DOUBLE PRECISION,
+    du_co INTEGER,
+    du_co_ngoai_te DOUBLE PRECISION,
+    loai_tien VARCHAR(5),
+    muc_tieu_muc VARCHAR(12),
+    nhom_muc VARCHAR(4),
+    ma_chuong_trinh VARCHAR(20),
+    ma_cong_trinh VARCHAR(15),
+    ma_nguon VARCHAR(6),
+    ma_don_vi VARCHAR(10),
+    dong_dau VARCHAR(10),
+    deleted BOOLEAN NOT NULL DEFAULT FALSE
+    );

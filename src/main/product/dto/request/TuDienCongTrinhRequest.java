@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import main.product.repository.TuDienCongTrinhRepository;
+import main.product.validation.UniqueField;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -13,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 public class TuDienCongTrinhRequest {
     @NotBlank(message = "Mã công trình không được để trống")
     @Size(max = 20, message = "Mã công trình tối đa 20 ký tự")
+    @UniqueField(fieldName = "maCongTrinh", repository = TuDienCongTrinhRepository.class, message = "Mã công trình đã tồn tại")
     String maCongTrinh;
 
     @NotBlank(message = "Tên công trình không được để trống")

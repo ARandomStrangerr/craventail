@@ -20,14 +20,18 @@ public abstract class BaseService<T extends BaseEntity, R> {
 
     public Page<T> search(R request, Pageable pageable) {
         Specification<T> spec = buildSearchSpecification(request);
-        spec = spec.and((root, query, cb) -> cb.equal(root.get("deleted"), false));
+        spec = spec.and((root, query, cb) -> cb.isFalse(root.get("deleted")));
 
         return getRepository().findAll(spec, pageable);
     }
 
+    @Transactional
     public T create(R request) {
         T entity = getMapper().toEntity(request);
-        return getRepository().save(entity);
+        entity = beforeCreate(entity, request);
+        entity = getRepository().save(entity);
+        entity = afterCreate(entity, request);
+        return entity;
     }
 
     public T show(Long id) {
@@ -35,10 +39,14 @@ public abstract class BaseService<T extends BaseEntity, R> {
                 .orElseThrow(() -> new EntityNotFoundException(getNotFoundMessage()));
     }
 
+    @Transactional
     public T update(Long id, R request) {
         T entity = show(id);
         getMapper().updateEntity(entity, request);
-        return getRepository().save(entity);
+        entity = beforeUpdate(entity, request);
+        entity = getRepository().save(entity);
+        entity = afterUpdate(entity, request);
+        return entity;
     }
 
     public void delete(Long id) {
@@ -76,4 +84,20 @@ public abstract class BaseService<T extends BaseEntity, R> {
     protected Specification<T> buildSearchSpecification(R request) {
         return Specification.where(null);
     }
-} 
+
+    protected T beforeCreate(T entity, R request) {
+        return entity;
+    }
+
+    protected T beforeUpdate(T entity, R request) {
+        return entity;
+    }
+
+    protected T afterCreate(T entity, R request) {
+        return entity;
+    }
+
+    protected T afterUpdate(T entity, R request) {
+        return entity;
+    }
+}
