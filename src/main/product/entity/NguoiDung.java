@@ -12,13 +12,12 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NguoiDung {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String username;
-    private String password; // Giả định là đã hash rồi
-
-    // getters và setters
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(name = "ten_dang_nhap")
+	private String username;
+	@Column(name = "mat_khau")
+	private String password; // Giả định là đã hash rồi
 }
 
