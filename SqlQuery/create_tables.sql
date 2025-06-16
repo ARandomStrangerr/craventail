@@ -12,7 +12,6 @@ CREATE TABLE IF NOT EXISTS quyen_han (
 );
 
 CREATE TABLE IF NOT EXISTS quyen_han_nguoi_dung (
-	id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	ma_nguoi_dung INT NOT NULL,
 	ma_quyen_han INT NOT NULL,
 
@@ -23,7 +22,7 @@ CREATE TABLE IF NOT EXISTS quyen_han_nguoi_dung (
 );
 
 CREATE TYPE loai_tai_khoan AS ENUM (
-	"Tài sản", "Nợ", "Vốn", "Doanh Thu", "Chi phí"
+	'Tài sản', 'Nợ', 'Vốn', 'Doanh Thu', 'Chi phí'
 );
 
 CREATE TABLE IF NOT EXISTS he_thong_tai_khoan (
@@ -59,8 +58,8 @@ CREATE TABLE IF NOT EXISTS chi_tiet_chung_tu (
 
 	PRIMARY KEY (dong, ma_chung_tu),
 
-	FOREIGN KEY ma_chung_tu REFERENCES chung_tu(ma),
-	FOREIGN KEY ma_khoan_thu REFERENCES khoan_thu(ma)
+	FOREIGN KEY (ma_chung_tu) REFERENCES chung_tu(ma),
+	FOREIGN KEY (ma_khoan_thu) REFERENCES khoan_thu(ma)
 ); -- a.k.a bút toán
 
 CREATE TABLE IF NOT EXISTS don_vi (
