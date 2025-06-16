@@ -32,12 +32,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.36</version>
@@ -63,7 +57,7 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src</sourceDirectory>
+			<sourceDirectory>src/main/product</sourceDirectory>
         <testSourceDirectory>src</testSourceDirectory>
         <plugins>
             <plugin>
