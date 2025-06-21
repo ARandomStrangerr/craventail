@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+// change getter and setter ro another position.
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
