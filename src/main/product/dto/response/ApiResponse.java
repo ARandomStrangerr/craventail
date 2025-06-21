@@ -10,20 +10,29 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApiResponse<T> {
-    private int status;
-    private T data;
-    private String message;
-    private Map<String, String> errors;
+	private int status;
+	private T data;
+	private String msg;
+	private Map<String, String> err;
 
-    public static <T> ApiResponse<T> success(T data, String message) {
-        return new ApiResponse<>(200, data, message, null);
-    }
+	public static <T> ApiResponse<T> success(T data, String msg) {
+		ApiResponse<T> res = new ApiResponse<>();
+		res.status = 200;
+		res.data = data;
+		res.msg = "success";
+		return res;
+	}
 
-    public static <T> ApiResponse<T> error(String message) {
-        return new ApiResponse<>(400, null, message, null);
-    }
+	public static <T> ApiResponse<T> error(String msg) {
+		ApiResponse<T> res = new ApiResponse<>();
+		res.status = 400;
+		res.msg = msg;
+		return res;
+	}
 
-    public static <T> ApiResponse<T> validationError(Map<String, String> errors) {
-        return new ApiResponse<>(422, null, null, errors);
-    }
+	public static <T> ApiResponse<T> validationError(Map<String, String> err) {
+		ApiResponse<T>  res = new ApiResponse<>();
+		res.err = err;
+		return res;
+	}
 }
