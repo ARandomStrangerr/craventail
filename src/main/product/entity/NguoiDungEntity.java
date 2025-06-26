@@ -3,8 +3,10 @@ package main.product.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
+@Entity
 @Table(name = "nguoi_dung")
 public class NguoiDungEntity extends BaseEntity {
 

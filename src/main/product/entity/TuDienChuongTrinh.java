@@ -1,7 +1,11 @@
 package main.product.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
+@Entity
+@Table("tu_dien_chuong_trinh")
 public class TuDienChuongTrinh extends BaseEntity {
 
 	@Column(name = "Ma_chuong_trinh")
