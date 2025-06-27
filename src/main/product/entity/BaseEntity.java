@@ -1,9 +1,14 @@
 package main.product.entity;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-public class BaseEntity {
+public abstract class BaseEntity {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "ma")
 	private Long id;
 	public Long getId() {
