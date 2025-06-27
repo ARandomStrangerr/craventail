@@ -1,6 +1,9 @@
 package main.product.repository;
 
-public interface TuDienCongTrinhRepo extends BaseRepo<TuDienChuongTrinhRepo, Long>{
+import org.springframework.stereotype.Repository;
 
+import main.product.entity.TuDienChuongTrinhEntity;
 
+@Repository
+public interface TuDienCongTrinhRepo extends BaseRepo<TuDienChuongTrinhEntity, Long>{
 }

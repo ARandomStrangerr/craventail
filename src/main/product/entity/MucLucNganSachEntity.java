@@ -2,11 +2,9 @@ package main.product.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 
 @Entity
-@MappedSuperclass
 @Table(name = "muc_luc_ngan_sach")
 public class MucLucNganSachEntity extends BaseEntity {
 

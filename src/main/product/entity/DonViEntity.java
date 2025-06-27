@@ -6,7 +6,6 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 
 @Entity
-@MappedSuperclass
 @Table(name = "don_vi")
 public class DonViEntity extends BaseEntity {
 
