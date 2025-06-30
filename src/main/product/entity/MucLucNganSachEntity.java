@@ -35,7 +35,7 @@ public class MucLucNganSachEntity extends BaseEntity {
 			this.name = name;
 	}
 
-	@Column (name = "nguoi_dung")
+	@Column (name = "noi_dung")
 	private String desc;
 	public String getDesc() {
 			return desc;

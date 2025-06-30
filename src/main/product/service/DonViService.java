@@ -1,10 +1,12 @@
 package main.product.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import main.product.entity.DonViEntity;
 import main.product.repository.DonViRepo;
 
+@Service
 public class DonViService extends BaseService<DonViEntity, Long> {
 	@Autowired
 	private DonViRepo repo;

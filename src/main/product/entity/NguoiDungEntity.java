@@ -37,7 +37,7 @@ public class NguoiDungEntity extends BaseEntity {
 			this.name = name;
 	}
 	
-	@Column(name = "ngay_lap")
+	@Column(name = "thoi_diem_tao")
 	private LocalDateTime createDate = LocalDateTime.now();
 	public LocalDateTime getCreateDate() {
 		return createDate;

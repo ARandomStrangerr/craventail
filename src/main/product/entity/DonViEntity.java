@@ -2,7 +2,6 @@ package main.product.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 
 @Entity
@@ -107,5 +106,4 @@ public class DonViEntity extends BaseEntity {
 	public void setTreasuryForTaxTransfer(String treasuryForTaxTransfer) {
 			this.treasuryForTaxTransfer = treasuryForTaxTransfer;
 	}
-
 }
