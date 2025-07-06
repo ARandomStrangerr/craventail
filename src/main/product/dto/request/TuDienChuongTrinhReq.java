@@ -1,14 +1,7 @@
-package main.product.entity;
+package main.product.dto.request;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+public class TuDienChuongTrinhReq {
 
-@Entity
-@Table(schema = "ke_toan_schema", name = "tu_dien_chuong_trinh")
-public class TuDienChuongTrinhEntity extends BaseEntity {
-
-	@Column(name = "Ma_chuong_trinh")
 	private String programCode;
 	public String getProgramCode() {
 			return programCode;
@@ -17,7 +10,6 @@ public class TuDienChuongTrinhEntity extends BaseEntity {
 			this.programCode = programCode;
 	}
 
-	@Column(name = "ten_chuong_trinh")
 	private String programName;
 	public String getProgramName() {
 			return programName;
@@ -26,7 +18,6 @@ public class TuDienChuongTrinhEntity extends BaseEntity {
 			this.programName = programName;
 	}
 
-	@Column(name = "ma_chuong")
 	private String sectionCode;
 	public String getSectionCode() {
 			return sectionCode;
@@ -35,7 +26,6 @@ public class TuDienChuongTrinhEntity extends BaseEntity {
 			this.sectionCode = sectionCode;
 	}
 
-	@Column(name = "nguon_von")
 	private String fundSource;
 	public String getFundSource() {
 			return fundSource;

@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "don_vi")
+@Table(schema = "ke_toan_schema", name = "don_vi")
 public class DonViEntity extends BaseEntity {
 
 	@Column(name = "don_vi_chu_quan")

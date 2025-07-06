@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "nguoi_dung")
+@Table(schema = "nguoi_dung_schema", name = "nguoi_dung")
 public class NguoiDungEntity extends BaseEntity {
 
 	@Column(name = "ten_dang_nhap")
@@ -41,5 +41,8 @@ public class NguoiDungEntity extends BaseEntity {
 	private LocalDateTime createDate = LocalDateTime.now();
 	public LocalDateTime getCreateDate() {
 		return createDate;
+	}
+	public void setCreateDate(LocalDateTime createDate) {
+			this.createDate = createDate;
 	}
 }
