@@ -1,6 +1,5 @@
 package main.product.controller;
 
-import java.util.HashMap;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpSession;
 import main.product.dto.request.DangNhapReq;
-import main.product.entity.BaseEntity;
 import main.product.entity.NguoiDungEntity;
 import main.product.service.NguoiDungService;
 
@@ -28,8 +26,7 @@ public class DangNhapController {
 		Optional<NguoiDungEntity> entity = service.getByUsername(req.getTenNguoiDung());	
 		if (entity.isEmpty() || !entity.get().getPassword().equals(req.getMatKhau()))
 			return ResponseEntity.status(401).body("Tên đăng nhập hoặc mật khẩu không chính xác");
-		HashMap<String, BaseEntity> data = new HashMap<>();
-		session.setAttribute(req.getTenNguoiDung(), data);
+		session.setAttribute("username", req.getTenNguoiDung());
 		return ResponseEntity.ok("Thành công");
 	}
 }

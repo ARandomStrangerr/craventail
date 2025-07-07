@@ -3,107 +3,35 @@ package main.product.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(schema = "ke_toan_schema", name = "don_vi")
 public class DonViEntity extends BaseEntity {
 
 	@Column(name = "don_vi_chu_quan")
-	private String supervisingUnit;
-	public String getSupervisingUnit() {
-			return supervisingUnit;
-	}
-	public void setSupervisingUnit(String supervisingUnit) {
-			this.supervisingUnit = supervisingUnit;
-	}
-
+	private String DonViChuQuan;
 	@Column(name = "ma_don_vi")
-	private String unitCode;
-	public String getUnitCode() {
-			return unitCode;
-	}
-	public void setUnitCode(String unitCode) {
-			this.unitCode = unitCode;
-	}
-
+	private String maDonVi;
 	@Column(name = "ten_don_vi")
-	private String unitName;
-	public String getUnitName() {
-			return unitName;
-	}
-	public void setUnitName(String unitName) {
-			this.unitName = unitName;
-	}
-
+	private String tenDonVi;
 	@Column(name = "ten_doi_ngoai")
-	private String foreignName;
-	public String getForeignName() {
-			return foreignName;
-	}
-	public void setForeignName(String foreignName) {
-			this.foreignName = foreignName;
-	}
-
+	private String tenDoiNgoai;
 	@Column(name = "dia_chi")
-	private String address;
-	public String getAddress() {
-			return address;
-	}
-	public void setAddress(String address) {
-			this.address = address;
-	}
-
+	private String diaChi;
 	@Column(name = "ma_chuong")
-	private String sectionCode;
-	public String getSectionCode() {
-			return sectionCode;
-	}
-	public void setSectionCode(String sectionCode) {
-			this.sectionCode = sectionCode;
-	}
-
+	private String maChuong;
 	@Column(name = "ma_so_thue")
-	private String taxCode;
-	public String getTaxCode() {
-			return taxCode;
-	}
-	public void setTaxCode(String taxCode) {
-			this.taxCode = taxCode;
-	}
-
+	private String maSoThue;
 	@Column(name = "cuc_thue")
-	private String taxDepartment;
-	public String getTaxDepartment() {
-			return taxDepartment;
-	}
-	public void setTaxDepartment(String taxDepartment) {
-			this.taxDepartment = taxDepartment;
-	}
-
+	private String cucThue;
 	@Column(name = "ma_chuong_thu_thue")
-	private String taxSectionCode;
-	public String getTaxSectionCode() {
-			return taxSectionCode;
-	}
-	public void setTaxSectionCode(String taxSectionCode) {
-			this.taxSectionCode = taxSectionCode;
-	}
-
+	private String maChuongThuThue;
 	@Column(name = "ma_so_don_vi_thu_thue")
-	private String taxCollectorUnitCode;
-	public String getTaxCollectorUnitCode() {
-			return taxCollectorUnitCode;
-	}
-	public void setTaxCollectorUnitCode(String taxCollectorUnitCode) {
-			this.taxCollectorUnitCode = taxCollectorUnitCode;
-	}
-
+	private String maSoDonViThuThue;
 	@Column(name = "kho_bac_chuyen_thue")
-	private String treasuryForTaxTransfer;
-	public String getTreasuryForTaxTransfer() {
-			return treasuryForTaxTransfer;
-	}
-	public void setTreasuryForTaxTransfer(String treasuryForTaxTransfer) {
-			this.treasuryForTaxTransfer = treasuryForTaxTransfer;
-	}
+	private String khoBacChuyenThue;
 }

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,20 +28,23 @@ public class NguoiDungController {
 	
 	@Autowired
 	private NguoiDungService service;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
+	// create new user
 	@PostMapping
 	public ResponseEntity<?> post(@RequestBody NguoiDungReq req){
-		System.out.println("HELLO");
 		NguoiDungEntity entity = new NguoiDungEntity();
 		entity.setName(req.getTen());
 		entity.setUsername(req.getTenNguoiDung());
-		entity.setPassword(req.getMatKhau());
+		entity.setPassword(passwordEncoder.encode(req.getMatKhau()));
 		entity.setCreateDate(LocalDateTime.now());
 		entity.setSoftDelete(false);
 		service.createOrUpdate(entity);
 		return ResponseEntity.ok("Thành công tạo người dùng mới");
 	}
 
+	// get users by page
 	@GetMapping
 	public ResponseEntity<?> getMultiple(@RequestParam(name = "pageSize", defaultValue = "10") int pageSize, @RequestParam(name = "pageNumber", defaultValue = "0") int pageNum) {	
 		Pageable pageable = PageRequest.of(pageNum, pageSize);
@@ -48,19 +52,22 @@ public class NguoiDungController {
 		return ResponseEntity.ok(filledPage);
 	}
 
+	// get a specific user by name
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getSingle(@PathVariable Long id) {
 		NguoiDungEntity entity = service.getSingle(id);
 		return ResponseEntity.ok(entity);
 	}
 
+	// mark that the user is deleted
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		NguoiDungEntity entity = service.softDelete(id);
 		return ResponseEntity.ok("OK");
 	}
 
-	@PutMapping
+	// update an user
+	@PutMapping("/{id}")
 	public ResponseEntity<?> put(@PathVariable Long id, @RequestBody NguoiDungReq req){
 		NguoiDungEntity entity = service.getSingle(id);
 		entity.setName(req.getTen());
