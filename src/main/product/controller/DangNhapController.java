@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,7 @@ import main.product.entity.NguoiDungEntity;
 import main.product.service.NguoiDungService;
 
 @RestController
-@RequestMapping("/dang-nhap")
+@RequestMapping("/xac-thuc")
 public class DangNhapController {
 
 	@Autowired
@@ -31,5 +32,11 @@ public class DangNhapController {
 			return ResponseEntity.status(401).body("Tên đăng nhập hoặc mật khẩu không chính xác");
 		session.setAttribute("username", req.getTenNguoiDung());
 		return ResponseEntity.ok("Thành công");
+	}
+
+	@DeleteMapping
+	public ResponseEntity<?> dangXuat(HttpSession session){
+		session.invalidate();
+		return ResponseEntity.ok("Đăng xuất");
 	}
 }
