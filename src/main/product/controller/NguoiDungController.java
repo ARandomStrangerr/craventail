@@ -3,19 +3,13 @@ package main.product.controller;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import main.product.dto.request.NguoiDungReq;
@@ -24,16 +18,19 @@ import main.product.service.NguoiDungService;
 
 @RestController
 @RequestMapping("/nguoi-dung")
-public class NguoiDungController {
+public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDungService, NguoiDungReq> {
 	
 	@Autowired
 	private NguoiDungService service;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	// create new user
+	protected NguoiDungService getService(){
+		return service;
+	}
+
 	@PostMapping
-	public ResponseEntity<?> post(@RequestBody NguoiDungReq req){
+	public ResponseEntity<?> them(@RequestBody NguoiDungReq req){
 		NguoiDungEntity entity = new NguoiDungEntity();
 		entity.setName(req.getTen());
 		entity.setUsername(req.getTenNguoiDung());
@@ -44,31 +41,8 @@ public class NguoiDungController {
 		return ResponseEntity.ok("Thành công tạo người dùng mới");
 	}
 
-	// get users by page
-	@GetMapping
-	public ResponseEntity<?> getMultiple(@RequestParam(name = "pageSize", defaultValue = "10") int pageSize, @RequestParam(name = "pageNumber", defaultValue = "0") int pageNum) {	
-		Pageable pageable = PageRequest.of(pageNum, pageSize);
-		Page<NguoiDungEntity> filledPage = service.getByPage(pageable);
-		return ResponseEntity.ok(filledPage);
-	}
-
-	// get a specific user by name
-	@GetMapping("/{id}")
-	public ResponseEntity<?> getSingle(@PathVariable Long id) {
-		NguoiDungEntity entity = service.getSingle(id);
-		return ResponseEntity.ok(entity);
-	}
-
-	// mark that the user is deleted
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Long id){
-		NguoiDungEntity entity = service.softDelete(id);
-		return ResponseEntity.ok("OK");
-	}
-
-	// update an user
 	@PutMapping("/{id}")
-	public ResponseEntity<?> put(@PathVariable Long id, @RequestBody NguoiDungReq req){
+	public ResponseEntity<?> capNhat(@PathVariable Long id, @RequestBody NguoiDungReq req){
 		NguoiDungEntity entity = service.getSingle(id);
 		entity.setName(req.getTen());
 		entity.setPassword(req.getMatKhau());

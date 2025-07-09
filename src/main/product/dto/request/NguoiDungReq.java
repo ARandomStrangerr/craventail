@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class NguoiDungReq {
+public class NguoiDungReq implements RequestInterface {
 
 	@NotBlank(message = "Tên chủ tài khoản không được bỏ trống")
 	@Size(min = 5, max = 128, message = "| Tên chủ tài khoản | ∈ [10, 128] ∩ ℕ")

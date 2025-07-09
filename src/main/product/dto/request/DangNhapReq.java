@@ -2,7 +2,7 @@ package main.product.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class DangNhapReq {
+public class DangNhapReq implements RequestInterface {
 
 	@NotBlank(message = "Tên đăng nhập không được bỏ trống")
 	private String tenNguoiDung;
