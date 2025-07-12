@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tai_khoan_dung")
+@Table(schema = "ke_toan_schema", name = "tai_khoan_dung")
 public class TaiKhoanDungEntity extends BaseEntity {
 
 	@NotNull(message = "Tên tài khoản không được bỏ trống")

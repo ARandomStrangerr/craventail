@@ -29,6 +29,7 @@ public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDu
 		return service;
 	}
 
+	@Override
 	@PostMapping
 	public ResponseEntity<?> them(@RequestBody NguoiDungReq req){
 		NguoiDungEntity entity = new NguoiDungEntity();
@@ -41,6 +42,7 @@ public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDu
 		return ResponseEntity.ok("Thành công tạo người dùng mới");
 	}
 
+	@Override
 	@PutMapping("/{id}")
 	public ResponseEntity<?> capNhat(@PathVariable Long id, @RequestBody NguoiDungReq req){
 		NguoiDungEntity entity = service.getSingle(id);
