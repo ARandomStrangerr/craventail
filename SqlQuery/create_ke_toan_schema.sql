@@ -1,28 +1,28 @@
 CREATE SCHEMA IF NOT EXISTS ke_toan_schema;
 
 CREATE TABLE IF NOT EXISTS ke_toan_schema.don_vi (
-    ma SERIAL PRIMARY KEY,
-    don_vi_chu_quan VARCHAR(256),
-    ma_don_vi VARCHAR(20),
-    ten_don_vi VARCHAR(256) NOT NULL,
-    ten_doi_ngoai VARCHAR(256),
-    dia_chi VARCHAR(256) NOT NULL,
-    ma_chuong VARCHAR(6) NOT NULL,
-    ma_so_thue VARCHAR(10) NOT NULL,
-		cuc_thue VARCHAR(256),
-    ma_so_don_vi VARCHAR(20) NOT NULL,
-    ma_chuong_thu_thue VARCHAR(6),
-    ma_so_don_vi_thu_thue VARCHAR(10),
-    kho_bac_chuyen_thue VARCHAR(20)
+	ma SERIAL PRIMARY KEY,
+	don_vi_chu_quan VARCHAR(256),
+	ma_don_vi VARCHAR(20),
+	ten_don_vi VARCHAR(256) NOT NULL,
+	ten_doi_ngoai VARCHAR(256),
+	dia_chi VARCHAR(256) NOT NULL,
+	ma_chuong VARCHAR(6) NOT NULL,
+	ma_so_thue VARCHAR(10) NOT NULL,
+	cuc_thue VARCHAR(256),
+	ma_so_don_vi VARCHAR(20) NOT NULL,
+	ma_chuong_thu_thue VARCHAR(6),
+	ma_so_don_vi_thu_thue VARCHAR(10),
+	kho_bac_chuyen_thue VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS ke_toan_schema.muc_luc_ngan_sach (
-   ma SERIAL PRIMARY KEY,
-   nhom VARCHAR(4) NOT NULL,
-   tieu_nhom VARCHAR(5) NULL,
-   ten VARCHAR(12) NOT NULL,
-   noi_dung VARCHAR(256) NOT NULL,
-   soft_delete BOOLEAN NOT NULL DEFAULT FALSE
+	ma SERIAL PRIMARY KEY,
+  nhom VARCHAR(4) NOT NULL,
+	tieu_nhom VARCHAR(5) NULL,
+	ten VARCHAR(12) NOT NULL,
+	noi_dung VARCHAR(256) NOT NULL,
+	soft_delete BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS ke_toan_schema.tai_khoan_dung (
@@ -82,29 +82,29 @@ CREATE TABLE IF NOT EXISTS ke_toan_schema.chi_tiet_chung_tu (
 ); -- a.k.a bút toán
 
 CREATE TABLE IF NOT EXISTS ke_toan_schema.tu_dien_cong_trinh (
-    id SERIAL PRIMARY KEY,
-    ma_cong_trinh VARCHAR(20) NOT NULL,
-    ten_cong_trinh VARCHAR(256) NOT NULL,
-    ma_chuong VARCHAR(6) NOT NULL,
-    soft_delete BOOLEAN NOT NULL DEFAULT FALSE
+	id SERIAL PRIMARY KEY,
+	ma_cong_trinh VARCHAR(20) NOT NULL,
+	ten_cong_trinh VARCHAR(256) NOT NULL,
+	ma_chuong VARCHAR(6) NOT NULL,
+	soft_delete BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS ke_toan_schema.tu_dien_chuong_trinh (
-    id SERIAL PRIMARY KEY,
-    ma_chuong_trinh VARCHAR(20) NOT NULL,
-    ten_chuong_trinh VARCHAR(256) NOT NULL,
-    ma_chuong VARCHAR(6) NOT NULL,
-    nguon_von VARCHAR(2) NOT NULL,
-    soft_delete BOOLEAN NOT NULL DEFAULT FALSE
+	id SERIAL PRIMARY KEY,
+	ma_chuong_trinh VARCHAR(20) NOT NULL,
+	ten_chuong_trinh VARCHAR(256) NOT NULL,
+	ma_chuong VARCHAR(6) NOT NULL,
+	nguon_von VARCHAR(2) NOT NULL,
+	soft_delete BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS ke_toan_schema.doi_tuong_kinh_te (
-    id BIGSERIAL PRIMARY KEY,
-    ma_doi_tuong VARCHAR(15) NOT NULL,
-    doi_tuong VARCHAR(256) NOT NULL,
-    dia_chi VARCHAR(256),
-    ma_don_vi VARCHAR(20),
-    ma_so_thue VARCHAR(20),
-    so_can_cuoc_cong_dan VARCHAR(20),
-    soft_delete BOOLEAN NOT NULL DEFAULT FALSE
+	id BIGSERIAL PRIMARY KEY,
+	ma_doi_tuong VARCHAR(15) NOT NULL,
+	doi_tuong VARCHAR(256) NOT NULL,
+	dia_chi VARCHAR(256),
+	ma_don_vi VARCHAR(20),
+	ma_so_thue VARCHAR(20),
+	so_can_cuoc_cong_dan VARCHAR(20),
+	soft_delete BOOLEAN NOT NULL DEFAULT FALSE
 );
