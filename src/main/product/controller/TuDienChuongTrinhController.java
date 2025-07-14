@@ -12,7 +12,7 @@ import main.product.entity.TuDienChuongTrinhEntity;
 import main.product.service.TuDienChuongTrinhService;
 
 @RestController
-@RequestMapping("tu-dien-chuong-trinh")
+@RequestMapping(RouteDefinition.TU_DIEN_CHUONG_TRINH)
 public class TuDienChuongTrinhController extends BaseController<TuDienChuongTrinhEntity, TuDienChuongTrinhService, TuDienChuongTrinhReq> {
 
 	@Autowired

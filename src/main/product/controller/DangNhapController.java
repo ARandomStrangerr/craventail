@@ -17,7 +17,7 @@ import main.product.entity.NguoiDungEntity;
 import main.product.service.NguoiDungService;
 
 @RestController
-@RequestMapping("/xac-thuc")
+@RequestMapping(value = RouteDefinition.XAC_THUC)
 public class DangNhapController {
 
 	@Autowired

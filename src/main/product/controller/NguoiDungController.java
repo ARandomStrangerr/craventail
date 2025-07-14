@@ -17,7 +17,7 @@ import main.product.entity.NguoiDungEntity;
 import main.product.service.NguoiDungService;
 
 @RestController
-@RequestMapping("/nguoi-dung")
+@RequestMapping(value = RouteDefinition.NGUOI_DUNG)
 public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDungService, NguoiDungReq> {
 	
 	@Autowired

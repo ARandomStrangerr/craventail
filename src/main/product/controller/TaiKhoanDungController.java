@@ -13,7 +13,7 @@ import main.product.entity.TaiKhoanDungEntity;
 import main.product.service.TaiKhoanDungService;
 
 @RestController
-@RequestMapping("/tai-khoan-dung")
+@RequestMapping(RouteDefinition.TAI_KHOAN_DUNG)
 public class TaiKhoanDungController extends BaseController<TaiKhoanDungEntity, TaiKhoanDungService, TaiKhoanDungReq> {
 
 	@Autowired

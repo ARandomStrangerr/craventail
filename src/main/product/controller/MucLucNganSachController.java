@@ -12,7 +12,7 @@ import main.product.entity.MucLucNganSachEntity;
 import main.product.service.MucLucNganSachService;
 
 @RestController
-@RequestMapping("/muc-luc-ngan-sach")
+@RequestMapping(value = RouteDefinition.MUC_LUC_NGAN_SACH)
 public class MucLucNganSachController extends BaseController<MucLucNganSachEntity, MucLucNganSachService, MucLucNganSachReq>{
 
 	@Autowired
