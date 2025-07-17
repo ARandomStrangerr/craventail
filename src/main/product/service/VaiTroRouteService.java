@@ -26,6 +26,9 @@ public class VaiTroRouteService extends BaseService<VaiTroRouteEntity, Long> {
 			VaiTroRouteEntity entity = new VaiTroRouteEntity();
 			entity.setMaVaiTro(vaiTroId);
 			entity.setRouteSignature(signature);
+
+			entity = repo.save(entity);
+			
 			list.add(entity);
 		}
 		return list;

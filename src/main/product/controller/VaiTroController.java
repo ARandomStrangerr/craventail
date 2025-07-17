@@ -28,7 +28,9 @@ public class VaiTroController {
 
 	@PostMapping
 	public ResponseEntity<?> them(@RequestBody VaiTroReq req){
+		// tạo vai trò
 		VaiTroEntity vaiTroEntity = vaiTroService.createOrModifyVaiTro(req.getTen());
+		// tạo routes mà vai trò có thể đăng nhập
 		List<VaiTroRouteEntity> vaiTroRouteEntities = vaiTroRouteService.createVaiTroRoute(vaiTroEntity.getId(), req.getRouteSignature());
 		return ResponseEntity.ok("OK");
 	}
