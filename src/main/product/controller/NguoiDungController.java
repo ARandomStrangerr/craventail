@@ -22,9 +22,7 @@ public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDu
 	
 	@Autowired
 	private NguoiDungService service;
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
+	
 	protected NguoiDungService getService(){
 		return service;
 	}
@@ -32,13 +30,7 @@ public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDu
 	@Override
 	@PostMapping
 	public ResponseEntity<?> them(@RequestBody NguoiDungReq req){
-		NguoiDungEntity entity = new NguoiDungEntity();
-		entity.setName(req.getTen());
-		entity.setUsername(req.getTenNguoiDung());
-		entity.setPassword(passwordEncoder.encode(req.getMatKhau()));
-		entity.setCreateDate(LocalDateTime.now());
-		entity.setSoftDelete(false);
-		service.createOrUpdate(entity);
+		service.createUser(req.getTen(), req.getTenNguoiDung(), req.getMatKhau(), req.getVaiTro());
 		return ResponseEntity.ok("Thành công tạo người dùng mới");
 	}
 

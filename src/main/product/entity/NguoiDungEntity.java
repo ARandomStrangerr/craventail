@@ -12,6 +12,13 @@ public class NguoiDungEntity extends BaseEntity {
 
 	@Column(name = "ten_dang_nhap")
 	private String username;
+	@Column(name = "mat_khau")
+	private String password;
+	@Column(name = "ten")
+	private String name;
+	@Column(name = "thoi_diem_tao")
+	private LocalDateTime createDate = LocalDateTime.now();
+
 	public String getUsername() {
 			return username;
 	}
@@ -19,8 +26,6 @@ public class NguoiDungEntity extends BaseEntity {
 			this.username = username;
 	}
 
-	@Column(name = "mat_khau")
-	private String password;
 	public String getPassword() {
 			return password;
 	}
@@ -28,17 +33,13 @@ public class NguoiDungEntity extends BaseEntity {
 			this.password = password;
 	}
 
-	@Column(name = "ten")
-	private String name;
 	public String getName() {
 			return name;
 	}
 	public void setName(String name) {
 			this.name = name;
 	}
-	
-	@Column(name = "thoi_diem_tao")
-	private LocalDateTime createDate = LocalDateTime.now();
+
 	public LocalDateTime getCreateDate() {
 		return createDate;
 	}
