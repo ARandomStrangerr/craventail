@@ -1,10 +1,7 @@
 package main.product.controller;
 
-import java.time.LocalDateTime;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -37,11 +34,7 @@ public class NguoiDungController extends BaseController<NguoiDungEntity, NguoiDu
 	@Override
 	@PutMapping("/{id}")
 	public ResponseEntity<?> capNhat(@PathVariable Long id, @RequestBody NguoiDungReq req){
-		NguoiDungEntity entity = service.getSingle(id);
-		entity.setName(req.getTen());
-		entity.setPassword(req.getMatKhau());
-		entity.setUsername(req.getTenNguoiDung());
-		entity.setSoftDelete(entity.getSoftDelete());
+		service.updateUser(id, req.getTen(), req.getMatKhau(), req.getVaiTro());
 		return ResponseEntity.ok("OK");
 	}
 }
