@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpSession;
 import main.product.dto.request.DangNhapReq;
+import main.product.entity.NguoiDungEntity;
 import main.product.service.NguoiDungService;
+import main.product.service.VaiTroRouteService;
 
 @RestController
 @RequestMapping(value = RouteDefinition.XAC_THUC)
@@ -22,18 +24,25 @@ public class DangNhapController {
 
 	@Autowired
 	private NguoiDungService service;
+	@Autowired
+	private VaiTroRouteService vaiTroRouteService;
 	
 	@PostMapping
 	public ResponseEntity<?> dangNhap(@RequestBody DangNhapReq req, HttpSession session){
-		List<String> routeSignature;
+		// login action
+		NguoiDungEntity entity;
 		try {	
-			routeSignature = service.login(req.getTenNguoiDung(), req.getMatKhau());
+			entity = service.login(req.getTenNguoiDung(), req.getMatKhau());
 		} catch (UsernameNotFoundException | BadCredentialsException e) {
 			return ResponseEntity.status(401).body(e.getMessage());
 		} 
-		session.setAttribute("route", routeSignature);
 		session.setAttribute("username", req.getTenNguoiDung());
-		return ResponseEntity.ok(routeSignature);
+
+		// get the viable routes
+		List<String> viableRouteSignatures = vaiTroRouteService.getRouteForUser(entity.getId());
+		session.setAttribute("route", viableRouteSignatures);
+
+		return ResponseEntity.ok(viableRouteSignatures);
 	}
 
 	@DeleteMapping

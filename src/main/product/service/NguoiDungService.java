@@ -73,7 +73,18 @@ public class NguoiDungService extends BaseService<NguoiDungEntity, Long>{
 		return nguoiDungEntity;
 	}
 
-	public NguoiDungEntity updateUser(Long userId, String ten, String matKhau, List<String> vaiTro) {
+	/**
+	 * @param
+	 * Long ~ user ID
+	 * String | null ~ name of the owner
+	 * String | null ~ new password
+	 * List<String> | null ~ list of the role
+	 * 
+	 * @throws
+	 * UsernameNotFoundException ~ when the given ID does not match with any user
+	 * NullPointerException ~ when one of the given role is not found
+	 **/
+	public NguoiDungEntity updateUser(Long userId, String ten, String matKhau, List<String> vaiTro) throws UsernameNotFoundException, NullPointerException {
 		Optional<NguoiDungEntity> nguoiDungEntity = repo.findById(userId);
 
 		if (nguoiDungEntity.isEmpty())
@@ -130,13 +141,13 @@ public class NguoiDungService extends BaseService<NguoiDungEntity, Long>{
 	 * String ~ raw password
 	 * 
 	 * @output
-	 * List<String> ~ list of API that this user can access to
+	 * boolean ~ true if there is no error
 	 *
 	 * @throws
 	 * UsernameNotFoundException ~ when there is no account found with the username
 	 * BadCredentialsException ~ when the password is incorrect
 	 **/
-	public List<String> login(String username, String password) throws NullPointerException, BadCredentialsException {
+	public NguoiDungEntity login(String username, String password) throws NullPointerException, BadCredentialsException {
 		Optional<NguoiDungEntity> entity = this.repo.findByUsername(username);
 
 		if (entity.isEmpty())
@@ -145,6 +156,6 @@ public class NguoiDungService extends BaseService<NguoiDungEntity, Long>{
 		if (!passwordEncoder.matches(password, entity.get().getPassword()))
 			throw new BadCredentialsException("Tài khoản người dùng hoặc mật khẩu không chính xác");
 		
-		return repo.getRouteSignature(entity.get().getId());
+		return entity.get();
 	}
 }
